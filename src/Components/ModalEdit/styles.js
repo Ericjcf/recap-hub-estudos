@@ -18,6 +18,7 @@ export const Container = styled.div`
   background-color: var(--gray0);
   color: black;
   width: 40%;
+  max-width: 350px;
 
   padding: 20px;
   border-radius: 4px;
@@ -36,7 +37,10 @@ export const Container = styled.div`
       border-radius: 3px;
       width: 200px;
     }
-    input {
+    label {
+      font-size: 14px;
+    }
+    select {
       font-size: 12px;
       color: var(--gray0);
     }
@@ -58,6 +62,8 @@ export const ContainerTopo = styled.header`
   padding: 20px;
   justify-content: space-between;
   align-items: center;
+  max-width: 350px;
+
   button {
     font-weight: 900;
     font-size: 25px;

@@ -2,17 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { Container } from "./styles";
 import Button from "../../Components/Button";
 import Input from "../../Components/Input";
 import Select from "../../Components/Select";
 import api from "../../Services/api";
-import { Link, Redirect } from "react-router-dom";
-// dalkdsjasd
-// 12345678
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 export default function Cadastro({ autenticado }) {
+  const history = useHistory();
   const formSchema = yup.object().shape({
     email: yup
       .string()
@@ -36,6 +34,10 @@ export default function Cadastro({ autenticado }) {
     resolver: yupResolver(formSchema),
   });
 
+  function logando() {
+    return history.push("/");
+  }
+
   const onsubmitFunction = ({
     name,
     email,
@@ -58,10 +60,10 @@ export default function Cadastro({ autenticado }) {
       .post("/users", user)
       .then((response) => {
         console.log("response: ", response.data);
+        logando();
       })
       .catch((err) => console.log("erro ao logar"));
   };
-  console.log(autenticado);
 
   if (autenticado) {
     return <Redirect to="/dashboard" />;
@@ -122,12 +124,7 @@ export default function Cadastro({ autenticado }) {
           <option>Terceiro módulo (Introdução ao Backend)</option>
           <option>Quarto módulo (Backend Avançado)</option>
         </Select>
-        {/* <Input
-          register={register}
-          name="course_module"
-          label="Modulo do curso"
-          placeholder="Modulo do curso"
-        ></Input> */}
+
         <Button type="submit">Cadastrar</Button>
         <span>
           Já possui uma conta? faça o <Link to="/">Login</Link>
@@ -145,18 +142,3 @@ export default function Cadastro({ autenticado }) {
 //   "contact": "123456789",
 //   "course_module": "2o Módulo (Frontend avançado)"
 //   }
-
-// The key fingerprint is:
-// SHA256:slP2b1Q0kSiEGgyd0dVQqmLuBDDr4TDE6C7LJezGgeA ericjcf@gmail.com
-// The key's randomart image is:
-// +--[ED25519 256]--+
-// |    .+.+ +++...o |
-// |o     = o ..o +  |
-// |.oo    o  .. . . |
-// |+  +  .  .    .  |
-// |*.o . + S    .   |
-// |+E . + * .  .    |
-// |o++.  =   ..     |
-// |++o  o .   ..    |
-// |oo    .    ..    |
-// +----[SHA256]-----+

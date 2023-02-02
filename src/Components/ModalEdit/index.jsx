@@ -64,7 +64,7 @@ const ModalEdit = ({ user, idEdit, setUser, fechaModalEdit }) => {
             <option>Intermediário</option>
             <option>Avançado</option>
           </Select>
-          <Button type="submit">Salvar</Button>
+          <Button type="submit">Atualizar</Button>
         </form>
       </Container>
     </ModalTotal>

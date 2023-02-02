@@ -9,7 +9,7 @@ export const Container = styled.div`
   }
   select {
     background-color: ${(props) =>
-      props.color === "cinza" ? "#343B41" : "red"};
+      props.color === "cinza" ? "#343B41" : "#212529"};
     margin-top: 10px;
     padding: 5px;
     height: 40px;

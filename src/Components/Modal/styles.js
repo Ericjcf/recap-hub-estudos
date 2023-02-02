@@ -19,6 +19,8 @@ export const Container = styled.div`
   color: black;
   width: 40%;
 
+  max-width: 350px;
+
   padding: 20px;
   border-radius: 4px;
   border-top-left-radius: 0;
@@ -61,6 +63,8 @@ export const ContainerTopo = styled.header`
   padding: 20px;
   justify-content: space-between;
   align-items: center;
+
+  max-width: 350px;
   button {
     font-size: 25px;
   }
