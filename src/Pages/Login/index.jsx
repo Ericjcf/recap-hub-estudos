@@ -33,18 +33,17 @@ export default function Login({ autenticado, setAutenticado }) {
       .post("/sessions", data)
       .then((response) => {
         console.log("response: ", response.data);
-
         const { token, user } = response.data;
         // selecionei os dados que eu quero e salvei
         localStorage.clear();
         localStorage.setItem("@kenzieHub:token", JSON.stringify(token));
         localStorage.setItem("@kenzieHub:user", JSON.stringify(user));
-        history.push("/dashboard");
+        setAutenticado(true);
       })
       .catch((err) => console.log("erro ao logar"));
   };
 
-  if (autenticado) {
+  if (autenticado === true) {
     return <Redirect to="/dashboard" />;
   }
 

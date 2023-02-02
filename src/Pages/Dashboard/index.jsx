@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import Cards from "../../Components/Cards";
 import Button from "../../Components/Button";
@@ -13,27 +13,23 @@ export default function Dashboard({ autenticado, setAutenticado }) {
   const fechaModal = () => setModalVisible(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
   const fechaModalEdit = () => setModalEditVisible(false);
-  const [idEdit, setIdEdit] = useState("");
+  const [idEdit, setIdEdit] = useState({});
   const history = useHistory();
   const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
 
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("@kenzieHub:user") || {})
   );
-  // useEffect(() => {
-  //   setUser(JSON.parse(localStorage.getItem("@kenzieHub:user")));
-  //   console.log("Dash: User atualizado ", user);
-  // }, [modalVisible]);
 
   function editModal(id) {
     return setModalEditVisible(true), setIdEdit(id);
   }
 
   function deslogar() {
-    history.push("/");
-    setAutenticado(false);
     localStorage.clear();
     setUser({});
+    setAutenticado(false);
+    history.push("/");
   }
 
   const deletarTech = (id) => {
@@ -44,12 +40,27 @@ export default function Dashboard({ autenticado, setAutenticado }) {
           "Content-Type": "application/json",
         },
       })
-      .then(() => console.log("dashboard: tecnologia deletada"))
+      .then(() => {
+        api
+          .get(`/users/${user.id}`)
+          .then((response) =>
+            localStorage.setItem(
+              "@kenzieHub:user",
+              JSON.stringify(response.data),
+              console.log(
+                "modalDelete: Resposta do get techs: ",
+                response.data
+              ),
+              setUser(response.data)
+            )
+          );
+        console.log("dashboard: tecnologia deletada");
+      })
       .catch((err) => console.log(err));
   };
 
   if (autenticado === false) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   }
 
   return (
@@ -97,14 +108,15 @@ export default function Dashboard({ autenticado, setAutenticado }) {
           ))
         )}
         {modalVisible ? (
-          <Modal user={user} setUser={setUser} fechaModal={fechaModal}>
-            Modal aberto, agora feche!
-          </Modal>
+          <Modal user={user} setUser={setUser} fechaModal={fechaModal} />
         ) : null}
         {modalEditVisible ? (
-          <ModalEdit idEdit={idEdit} fechaModalEdit={fechaModalEdit}>
-            Modal aberto, agora feche!
-          </ModalEdit>
+          <ModalEdit
+            idEdit={idEdit}
+            user={user}
+            setUser={setUser}
+            fechaModalEdit={fechaModalEdit}
+          />
         ) : null}
       </Conteudo>
     </Container>

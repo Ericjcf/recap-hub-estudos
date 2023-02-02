@@ -1,5 +1,6 @@
 import Button from "../Button";
 import Input from "../Input";
+import Select from "../Select";
 import { FiX } from "react-icons/fi";
 import { ModalTotal, Container, ContainerTopo } from "./styles";
 import { useForm } from "react-hook-form";
@@ -18,8 +19,8 @@ const ModalEdit = ({ user, idEdit, setUser, fechaModalEdit }) => {
     resolver: yupResolver(formSchema),
   });
 
-  const onEditFunction = ({ status }) => {
-    const data = { status: "Avançado" };
+  const onEditFunction = (data) => {
+    // const data = { status: "Avançado" };
     console.log("modal: data enviado: ", data);
     api
       .put(`/users/techs/${idEdit}`, data, {
@@ -35,12 +36,12 @@ const ModalEdit = ({ user, idEdit, setUser, fechaModalEdit }) => {
             localStorage.setItem(
               "@kenzieHub:user",
               JSON.stringify(response.data),
-              console.log("modal: Resposta do get techs: ", response.data)
+              console.log("modalEdit: Resposta do get techs: ", response.data),
+              setUser(response.data)
             )
           );
       })
       .catch((err) => console.log("erro ao atulizar o status da tecnologia"));
-    setUser(JSON.parse(localStorage.getItem("@kenzieHub:user")));
     fechaModalEdit();
   };
 
@@ -54,12 +55,15 @@ const ModalEdit = ({ user, idEdit, setUser, fechaModalEdit }) => {
       </ContainerTopo>
       <Container>
         <form onSubmit={handleSubmit(onEditFunction)}>
-          <Input
+          <Select
             register={register}
             name="status"
-            placeholder="Status"
-            label=""
-          ></Input>
+            label="Nível de conhecimento"
+          >
+            <option>Iniciante</option>
+            <option>Intermediário</option>
+            <option>Avançado</option>
+          </Select>
           <Button type="submit">Salvar</Button>
         </form>
       </Container>

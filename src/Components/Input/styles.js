@@ -7,20 +7,21 @@ export const Container = styled.div`
   div {
     display: flex;
     flex-direction: row;
-    font-size: 14px;
+    font-size: 12px;
   }
 `;
 export const InputContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  padding: 12px;
+  flex-direction: column;
+  padding: 8px;
   border-radius: 4px;
   border: none;
   background: var(--gray2);
   color: var(--gray0);
 
   input {
-    background: transparent;
+    margin-top: 5px;
+    background: none;
     flex: 1;
     border: none;
 

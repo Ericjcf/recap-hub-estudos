@@ -11,7 +11,7 @@ export const Container = styled.button`
     props.tipo === "voltar"
       ? "100px"
       : props.tipo === "edicao"
-      ? "30px"
+      ? "40px"
       : "100%"};
   height: 40px;
   border: none;

@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Container } from "./styles";
 import Button from "../../Components/Button";
 import Input from "../../Components/Input";
+import Select from "../../Components/Select";
 import api from "../../Services/api";
 import { Link, Redirect } from "react-router-dom";
 // dalkdsjasd
@@ -60,6 +61,8 @@ export default function Cadastro({ autenticado }) {
       })
       .catch((err) => console.log("erro ao logar"));
   };
+  console.log(autenticado);
+
   if (autenticado) {
     return <Redirect to="/dashboard" />;
   }
@@ -108,12 +111,23 @@ export default function Cadastro({ autenticado }) {
           label="Contato"
           placeholder="link ou número para contato"
         ></Input>
-        <Input
+        <Select
+          color="cinza"
+          register={register}
+          name="course_module"
+          label="Selecione o Modulo do curso"
+        >
+          <option>Primeiro módulo (Introdução ao Frontend)</option>
+          <option>Segundo módulo (Frontend Avançado)</option>
+          <option>Terceiro módulo (Introdução ao Backend)</option>
+          <option>Quarto módulo (Backend Avançado)</option>
+        </Select>
+        {/* <Input
           register={register}
           name="course_module"
           label="Modulo do curso"
           placeholder="Modulo do curso"
-        ></Input>
+        ></Input> */}
         <Button type="submit">Cadastrar</Button>
         <span>
           Já possui uma conta? faça o <Link to="/">Login</Link>

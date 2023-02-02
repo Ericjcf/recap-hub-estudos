@@ -10,7 +10,6 @@ export default function Input({ register, name, label, ...rest }) {
           {/* <span>Aviso de erro!!</span> */}
         </div>
       )}
-
       <InputContainer>
         <input {...register(name)} {...rest} />
       </InputContainer>

@@ -35,10 +35,13 @@ export const Container = styled.div`
       margin: 1px;
       border-radius: 3px;
       width: 200px;
+      :hover {
+        opacity: 0.9;
+      }
     }
     input {
       font-size: 12px;
-      color: var(--gray3);
+      color: var(--gray0);
     }
     button {
       margin-top: 20px;
@@ -49,7 +52,7 @@ export const ContainerTopo = styled.header`
   display: flex;
   flex-direction: row;
   background-color: var(--rosa);
-  color: var(--gray1);
+  color: var(--gray0);
   border-radius: 4px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

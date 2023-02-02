@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalTotal = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -38,7 +38,7 @@ export const Container = styled.div`
     }
     input {
       font-size: 12px;
-      color: var(--gray3);
+      color: var(--gray0);
     }
     button {
       margin-top: 20px;
@@ -49,7 +49,7 @@ export const ContainerTopo = styled.header`
   display: flex;
   flex-direction: row;
   background-color: var(--rosa);
-  color: var(--gray1);
+  color: var(--gray0);
   border-radius: 4px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

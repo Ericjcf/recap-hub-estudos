@@ -1,8 +1,9 @@
 import Button from "../Button";
 import Input from "../Input";
+import Select from "../Select";
 import { FiX } from "react-icons/fi";
 import { ModalTotal, Container, ContainerTopo } from "./styles";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../Services/api";
@@ -37,12 +38,12 @@ const Modal = ({ user, setUser, children, fechaModal }) => {
             localStorage.setItem(
               "@kenzieHub:user",
               JSON.stringify(response.data),
-              console.log("modal: Resposta do get techs: ", response.data)
+              console.log("modal: Resposta do get techs: ", response.data),
+              setUser(response.data)
             )
           );
       })
       .catch((err) => console.log("erro ao adicionar a tecnologia"));
-    setUser(JSON.parse(localStorage.getItem("@kenzieHub:user")));
     fechaModal();
   };
 
@@ -62,12 +63,18 @@ const Modal = ({ user, setUser, children, fechaModal }) => {
             placeholder="Tecnologia"
             label=""
           ></Input>
-          <Input
+          <Select
+            color="cinza"
             register={register}
             name="status"
-            placeholder="Status"
+            placeholder="Nível de conhecimento"
             label=""
-          ></Input>
+          >
+            <option disabled>Escolha um</option>
+            <option>Iniciante</option>
+            <option>Intermediário</option>
+            <option>Avançado</option>
+          </Select>
           <Button type="submit">Salvar</Button>
         </form>
       </Container>

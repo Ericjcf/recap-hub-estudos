@@ -13,25 +13,19 @@ export default function Routes() {
     if (token) {
       setAutenticado(true);
     }
+    console.log("useEffect: token: ", token, "autenticado: ", autenticado);
   }, [autenticado]);
+
   return (
     <Switch>
-      <Route autenticado={autenticado} exact path="/">
-        <Login />
+      <Route exact path="/">
+        <Login autenticado={autenticado} setAutenticado={setAutenticado} />
       </Route>
-      <Route
-        autenticado={autenticado}
-        setAutenticado={setAutenticado}
-        path="/cadastro"
-      >
-        <Cadastro />
+      <Route path="/cadastro">
+        <Cadastro autenticado={autenticado} />
       </Route>
-      <Route
-        autenticado={autenticado}
-        setAutenticado={setAutenticado}
-        path="/dashboard"
-      >
-        <Dashboard />
+      <Route path="/dashboard">
+        <Dashboard autenticado={autenticado} setAutenticado={setAutenticado} />
       </Route>
     </Switch>
   );
