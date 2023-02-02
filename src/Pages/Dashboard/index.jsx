@@ -66,7 +66,7 @@ export default function Dashboard({ autenticado, setAutenticado }) {
   return (
     <Container>
       <Topo>
-        <h1>Kenzie HUB</h1>
+        <h1>HUB de estudos</h1>
         <Button colorSchema="cinza" tipo="voltar" onClick={deslogar}>
           Sair
         </Button>
