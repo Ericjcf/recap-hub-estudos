@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../Services/api";
+import { toast } from "react-toastify";
 
 const ModalEdit = ({ user, idEdit, setUser, fechaModalEdit }) => {
   const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
@@ -37,11 +38,15 @@ const ModalEdit = ({ user, idEdit, setUser, fechaModalEdit }) => {
               "@kenzieHub:user",
               JSON.stringify(response.data),
               console.log("modalEdit: Resposta do get techs: ", response.data),
-              setUser(response.data)
+              setUser(response.data),
+              toast.success("🤓  Tecnologia atualizada")
             )
           );
       })
-      .catch((err) => console.log("erro ao atulizar o status da tecnologia"));
+      .catch(
+        (err) => console.log("erro ao atulizar o status da tecnologia")
+        // toast.error("🫤 houve um problema na atualização")
+      );
     fechaModalEdit();
   };
 

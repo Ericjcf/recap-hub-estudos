@@ -27,7 +27,8 @@ export const InputContainer = styled.div`
 
     &::placeholder {
       color: var(--gray1);
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: 600;
     }
   }
 `;

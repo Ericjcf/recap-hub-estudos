@@ -7,6 +7,7 @@ import { set, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api from "../../Services/api";
+import { toast } from "react-toastify";
 
 const Modal = ({ user, setUser, children, fechaModal }) => {
   const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
@@ -22,7 +23,7 @@ const Modal = ({ user, setUser, children, fechaModal }) => {
   });
 
   const onsubmitFunction = ({ title, status }) => {
-    const data = { title, status: "Iniciante" };
+    const data = { title, status };
     console.log("modal: data enviado: ", data);
     api
       .post(`/users/techs`, data, {
@@ -39,11 +40,15 @@ const Modal = ({ user, setUser, children, fechaModal }) => {
               "@kenzieHub:user",
               JSON.stringify(response.data),
               console.log("modal: Resposta do get techs: ", response.data),
-              setUser(response.data)
+              setUser(response.data),
+              toast.success("📖 Tecnologia adicionada")
             )
           );
       })
-      .catch((err) => console.log("erro ao adicionar a tecnologia"));
+      .catch(
+        (err) => console.log("erro ao adicionar a tecnologia")
+        // toast.error("📖 Problema ao adicionar")
+      );
     fechaModal();
   };
 
@@ -52,7 +57,7 @@ const Modal = ({ user, setUser, children, fechaModal }) => {
       <ContainerTopo>
         <h2>Adicionar nova tecnologia</h2>
         <Button onClick={fechaModal} tipo="edicao" colorSchema="">
-          <FiX />
+          {/* <FiX /> */}X
         </Button>
       </ContainerTopo>
       <Container>

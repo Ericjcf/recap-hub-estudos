@@ -66,6 +66,14 @@ export const ContainerTopo = styled.header`
 
   max-width: 350px;
   button {
-    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 900;
+    height: 30px;
+    :hover {
+      background-color: var(--rosa-forte);
+    }
   }
 `;

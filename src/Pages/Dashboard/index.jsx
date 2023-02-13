@@ -6,6 +6,7 @@ import Modal from "../../Components/Modal";
 import ModalEdit from "../../Components/ModalEdit";
 import { useState } from "react";
 import { Container, Topo, Conteudo, Meio } from "./styles";
+import { toast } from "react-toastify";
 import api from "../../Services/api";
 
 export default function Dashboard({ autenticado, setAutenticado }) {
@@ -47,6 +48,7 @@ export default function Dashboard({ autenticado, setAutenticado }) {
             localStorage.setItem(
               "@kenzieHub:user",
               JSON.stringify(response.data),
+              toast.success("🤓 Tech removida com sucesso!!"),
               console.log(
                 "modalDelete: Resposta do get techs: ",
                 response.data
@@ -56,7 +58,10 @@ export default function Dashboard({ autenticado, setAutenticado }) {
           );
         console.log("dashboard: tecnologia deletada");
       })
-      .catch((err) => console.log(err));
+      .catch(
+        (err) => console.log(err),
+        toast.error("🫤 Tech removida com sucesso!!")
+      );
   };
 
   if (autenticado === false) {

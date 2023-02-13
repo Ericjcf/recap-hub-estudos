@@ -15,10 +15,14 @@ export const Container = styled.div`
     height: 40px;
     border: none;
     border-radius: 4px;
-
     color: var(--gray1);
+    font-size: 13px;
+    font-weight: 600;
     option {
       border-radius: 4px;
+      color: var(--gray1);
+      font-size: 13px;
+      font-weight: 600;
     }
     :hover {
       opacity: 0.9;
