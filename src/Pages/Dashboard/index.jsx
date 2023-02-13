@@ -23,7 +23,8 @@ export default function Dashboard({ autenticado, setAutenticado }) {
   );
 
   function editModal(id) {
-    return setModalEditVisible(true), setIdEdit(id);
+    setModalEditVisible(true);
+    setIdEdit(id);
   }
 
   function deslogar() {
