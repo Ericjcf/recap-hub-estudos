@@ -24,6 +24,7 @@ export const InputContainer = styled.div`
     background: none;
     flex: 1;
     border: none;
+    color: var(--gray0);
 
     &::placeholder {
       color: var(--gray1);

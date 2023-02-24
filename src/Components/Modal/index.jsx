@@ -46,8 +46,8 @@ const Modal = ({ user, setUser, children, fechaModal }) => {
           );
       })
       .catch(
-        (err) => console.log("erro ao adicionar a tecnologia"),
-        toast.error("📖 Problema ao adicionar")
+        (err) => console.log("erro ao adicionar a tecnologia")
+        // toast.error("📖 Problema ao adicionar")
       );
     fechaModal();
   };

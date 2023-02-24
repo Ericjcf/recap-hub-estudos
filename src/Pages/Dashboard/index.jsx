@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 import api from "../../Services/api";
 
 export default function Dashboard({ autenticado, setAutenticado }) {
+  console.log(autenticado);
+
   const [modalVisible, setModalVisible] = useState(false);
   const fechaModal = () => setModalVisible(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
@@ -17,10 +19,8 @@ export default function Dashboard({ autenticado, setAutenticado }) {
   const [idEdit, setIdEdit] = useState({});
   const history = useHistory();
   const token = JSON.parse(localStorage.getItem("@kenzieHub:token"));
-
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("@kenzieHub:user") || {})
-  );
+  const localUser = JSON.parse(localStorage.getItem("@kenzieHub:user"));
+  const [user, setUser] = useState(localUser || {});
 
   function editModal(id) {
     setModalEditVisible(true);
@@ -60,13 +60,13 @@ export default function Dashboard({ autenticado, setAutenticado }) {
         console.log("dashboard: tecnologia deletada");
       })
       .catch(
-        (err) => console.log(err),
-        toast.error("🫤 Tech removida com sucesso!!")
+        (err) => console.log(err)
+        // toast.error("🫤 Tech removida com sucesso!!")
       );
   };
 
   if (autenticado === false) {
-    return <Redirect to="/" />;
+    return history.push("/");
   }
 
   return (

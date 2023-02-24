@@ -6,7 +6,7 @@ export const Container = styled.div`
   min-width: 350px;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin: 10% auto;
   background-color: var(--gray4);
 
   form {
